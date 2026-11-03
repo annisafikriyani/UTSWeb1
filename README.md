@@ -1,8 +1,8 @@
 # 🌸 BLOOM BOOK
 
-### Website Pemesanan Buku Online | UTS Pemrograman Web 1
+### Website Pemesanan Buku Online | UTS Pemrograman Web 
 
-**BLOOM BOOK** adalah website toko buku online sederhana yang dibuat untuk memenuhi tugas Ujian Tengah Semester (UTS) mata kuliah Pemrograman Web 1. Website ini menyediakan fitur login, katalog dan stok buku, pemesanan, riwayat transaksi, serta pelacakan pengiriman.
+**BLOOM BOOK** adalah website toko buku online sederhana yang dibuat untuk memenuhi tugas Ujian Tengah Semester (UTS) mata kuliah Pemrograman Web. Website ini menyediakan fitur login, katalog dan stok buku, pemesanan, riwayat transaksi, serta pelacakan pengiriman.
 
 **Tugas UTS — Pemrograman Web** 
 | | |
