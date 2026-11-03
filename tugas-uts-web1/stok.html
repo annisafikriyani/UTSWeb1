@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katalog &amp; Stok - BLOOM BOOK</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="stok">
+  <header class="app-header">
+    <a class="brand" href="dashboard.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>
+      </span>
+      BLOOM BOOK
+    </a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Dashboard</a>
+      <a href="stok.html" data-page="stok">Katalog</a>
+      <a href="checkout.html" data-page="checkout">Pemesanan</a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user-box">
+      <div><strong id="userName">-</strong><span class="muted" id="userRole">-</span></div>
+      <button class="btn btn--ghost btn--small" type="button" id="btnLogout">Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>Informasi Stok &amp; Katalog</h1>
+      <p>Daftar buku ajar beserta edisi, sisa stok, dan harga. Stok di bawah 200 ditandai menipis.</p>
+    </div>
+    <p class="notice" id="infoUser" hidden>Anda masuk sebagai <strong>User</strong>. Menambah atau menghapus stok hanya bisa dilakukan oleh Admin.</p>
+    <p class="notice" id="infoAdmin" hidden>Anda masuk sebagai <strong>Admin</strong>. Anda dapat menambah stok baru dan menghapus buku mana pun dari katalog.</p>
+
+    <section class="card" aria-labelledby="judulTabel">
+      <div class="card__head">
+        <h2 id="judulTabel">Daftar buku</h2>
+        <button class="btn btn--primary" type="button" data-open="modalTambah">+ Tambah stok</button>
+      </div>
+
+      <div class="toolbar">
+        <label class="sr-only" for="cariBuku">Cari buku</label>
+        <input class="input" type="search" id="cariBuku" placeholder="Cari kode, judul, atau jenis...">
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" id="tabelStok">
+          <caption class="sr-only">Katalog buku dan stok</caption>
+          <thead>
+            <tr>
+              <th scope="col">Sampul</th>
+              <th scope="col">Kode</th>
+              <th scope="col">Judul</th>
+              <th scope="col">Jenis</th>
+              <th scope="col" class="num">Edisi</th>
+              <th scope="col" class="num">Stok</th>
+              <th scope="col" class="num">Harga</th>
+              <th scope="col">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="bodyStok"></tbody>
+        </table>
+      </div>
+      <p class="summary-line" id="ringkasanStok" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">BLOOM BOOK &middot; Tugas UTS Pemrograman Web</footer>
+
+  <!-- Modal: Tambah stok -->
+  <div class="modal" id="modalTambah" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="judulTambah">
+      <button class="modal__close" type="button" data-close aria-label="Tutup">&times;</button>
+      <h2 id="judulTambah">Tambah stok baru</h2>
+      <form id="formTambah" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="tKode">Kode barang</label>
+            <input class="input" type="text" id="tKode" name="kode" placeholder="EKMA4999" maxlength="12">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="tJenis">Jenis barang</label>
+            <select class="input" id="tJenis" name="jenis">
+              <option>Buku Ajar</option>
+              <option>Modul</option>
+              <option>Buku Referensi</option>
+            </select>
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field span-2">
+            <label for="tNama">Judul buku</label>
+            <input class="input" type="text" id="tNama" name="nama">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="tEdisi">Edisi</label>
+            <input class="input" type="number" id="tEdisi" name="edisi" min="1" value="1">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="tStok">Stok</label>
+            <input class="input" type="number" id="tStok" name="stok" min="0">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="tHarga">Harga (Rp)</label>
+            <input class="input" type="number" id="tHarga" name="harga" min="1000" step="500">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="tCover">Sampul <span class="hint">(opsional, maks. 300 KB)</span></label>
+            <input class="input" type="file" id="tCover" name="cover" accept="image/*">
+            <p class="field__error" role="alert"></p>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn--ghost" type="button" data-close>Batal</button>
+          <button class="btn btn--primary" type="submit">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

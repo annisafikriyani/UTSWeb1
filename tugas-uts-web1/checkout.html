@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pemesanan - BLOOM BOOK</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+  <header class="app-header">
+    <a class="brand" href="dashboard.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>
+      </span>
+      BLOOM BOOK
+    </a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" data-page="dashboard">Dashboard</a>
+      <a href="stok.html" data-page="stok">Katalog</a>
+      <a href="checkout.html" data-page="checkout">Pemesanan</a>
+      <a href="tracking.html" data-page="tracking">Tracking</a>
+    </nav>
+    <div class="user-box">
+      <div><strong id="userName">-</strong><span class="muted" id="userRole">-</span></div>
+      <button class="btn btn--ghost btn--small" type="button" id="btnLogout">Keluar</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>Pemesanan Buku</h1>
+      <p>Pilih buku, atur jumlahnya, lalu lengkapi data pemesan dan pembayaran.</p>
+    </div>
+
+    <div class="checkout-layout">
+      <section class="card" aria-labelledby="judulKeranjang">
+        <h2 id="judulKeranjang">Keranjang</h2>
+
+        <div class="add-row">
+          <div class="field">
+            <label for="selBuku">Buku</label>
+            <select class="input" id="selBuku"><option value="">Pilih buku...</option></select>
+          </div>
+          <div class="field">
+            <label for="qtyBuku">Jumlah</label>
+            <input class="input" type="number" id="qtyBuku" min="1" value="1">
+          </div>
+          <button class="btn btn--primary" type="button" id="btnTambah">Tambah</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" style="min-width:480px">
+            <caption class="sr-only">Isi keranjang</caption>
+            <thead>
+              <tr>
+                <th scope="col">Buku</th>
+                <th scope="col" class="num">Jumlah</th>
+                <th scope="col" class="num">Subtotal</th>
+                <th scope="col"><span class="sr-only">Hapus</span></th>
+              </tr>
+            </thead>
+            <tbody id="bodyKeranjang"></tbody>
+          </table>
+        </div>
+
+        <div class="totals" aria-live="polite">
+          <div><span>Subtotal</span><span id="totSub">Rp 0</span></div>
+          <div><span>Ongkos kirim</span><span id="totOngkir">Rp 0</span></div>
+          <div class="grand"><span>Total bayar</span><span id="totTotal">Rp 0</span></div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="judulPemesan">
+        <h2 id="judulPemesan">Data pemesan &amp; pembayaran</h2>
+        <form id="formPesan" novalidate>
+          <div class="field">
+            <label for="pNama">Nama pemesan</label>
+            <input class="input" type="text" id="pNama" name="nama" autocomplete="name">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="pEmail">Email</label>
+              <input class="input" type="email" id="pEmail" name="email" autocomplete="email">
+              <p class="field__error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="pTelp">No. telepon</label>
+              <input class="input" type="tel" id="pTelp" name="telp" placeholder="08123456789" autocomplete="tel">
+              <p class="field__error" role="alert"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="pAlamat">Alamat pengiriman</label>
+            <textarea class="input" id="pAlamat" name="alamat" autocomplete="street-address"></textarea>
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="pEkspedisi">Ekspedisi</label>
+              <select class="input" id="pEkspedisi" name="ekspedisi">
+                <option value="">Pilih ekspedisi...</option>
+                <option value="JNE">JNE (Rp 15.000)</option>
+                <option value="Pos Indonesia">Pos Indonesia (Rp 12.000)</option>
+                <option value="J&amp;T">J&amp;T (Rp 14.000)</option>
+                <option value="SiCepat">SiCepat (Rp 13.000)</option>
+              </select>
+              <p class="field__error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="pBayar">Metode pembayaran</label>
+              <select class="input" id="pBayar" name="bayar">
+                <option value="">Pilih metode...</option>
+                <option>Transfer Bank</option>
+                <option>E-Wallet</option>
+                <option>QRIS</option>
+                <option>Bayar di Tempat (COD)</option>
+              </select>
+              <p class="field__error" role="alert"></p>
+            </div>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit">Buat pesanan</button>
+        </form>
+      </section>
+    </div>
+
+    <section class="card" id="riwayat" aria-labelledby="judulRiwayat">
+      <div class="card__head"><h2 id="judulRiwayat">History transaksi</h2></div>
+      <div class="table-wrap">
+        <table class="table" style="min-width:720px">
+          <caption class="sr-only">Riwayat pesanan</caption>
+          <thead>
+            <tr>
+              <th scope="col">No. DO</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Pemesan</th>
+              <th scope="col">Pesanan</th>
+              <th scope="col" class="num">Total</th>
+              <th scope="col">Status</th>
+              <th scope="col"><span class="sr-only">Lacak</span></th>
+            </tr>
+          </thead>
+          <tbody id="bodyRiwayat"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">BLOOM BOOK &middot; Tugas UTS Pemrograman Web</footer>
+
+  <!-- Modal: pesanan berhasil -->
+  <div class="modal" id="modalSukses" hidden>
+    <div class="modal__box modal__box--sm" role="dialog" aria-modal="true" aria-labelledby="judulSukses">
+      <div class="popup__icon popup__icon--success" aria-hidden="true">&#10003;</div>
+      <h2 id="judulSukses">Pesanan dibuat</h2>
+      <p class="muted">Simpan nomor Delivery Order ini untuk melacak kiriman.</p>
+      <p class="do-number" id="nomorDOBaru">-</p>
+      <div class="form-actions" style="justify-content:center">
+        <button class="btn btn--ghost" type="button" data-close>Tutup</button>
+        <a class="btn btn--primary" id="linkLacak" href="tracking.html">Lacak pesanan</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

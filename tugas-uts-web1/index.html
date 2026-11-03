@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk - BLOOM BOOK</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+  <div class="login">
+    <aside class="login__art" aria-label="Pengantar">
+      <div>
+        <span class="brand">
+          <span class="brand__mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg>
+          </span>
+          BLOOM BOOK
+        </span>
+        <h1>Buku kuliah, dipesan dengan tenang.</h1>
+        <p>Cek stok, pesan, dan lacak kiriman buku ajar Anda dalam satu tempat.</p>
+      </div>
+      <div class="cover-stack" aria-hidden="true">
+        <img src="img/pengantar_komunikasi.jpg" alt="">
+        <img src="img/manajemen_keuangan.jpg" alt="">
+        <img src="img/kepemimpinan.jpg" alt="">
+      </div>
+    </aside>
+
+    <main class="login__panel">
+      <section class="card login__card" aria-labelledby="judulLogin">
+        <h2 id="judulLogin">Masuk ke akun</h2>
+        <p class="muted">Gunakan email dan password yang sudah terdaftar.</p>
+
+        <form id="formLogin" novalidate>
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input class="input" type="email" id="loginEmail" name="email" autocomplete="username" placeholder="nama@gmail.com">
+            <p class="field__error" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <div class="input-wrap">
+              <input class="input" type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="Masukkan password">
+              <button type="button" class="toggle-pw" data-toggle-pw aria-label="Tampilkan password">Lihat</button>
+            </div>
+            <p class="field__error" role="alert"></p>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit">Login</button>
+        </form>
+
+        <div class="login__links">
+          <button class="btn btn--link" type="button" data-open="modalLupa">Lupa Password</button>
+          <button class="btn btn--link" type="button" data-open="modalDaftar">Daftar</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal: Lupa Password -->
+  <div class="modal" id="modalLupa" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="judulLupa">
+      <button class="modal__close" type="button" data-close aria-label="Tutup">&times;</button>
+      <h2 id="judulLupa">Lupa password</h2>
+      <p class="muted">Masukkan email akun Anda. Kami akan mengirim tautan untuk mengatur ulang password.</p>
+      <form id="formLupa" novalidate>
+        <div class="field">
+          <label for="lupaEmail">Email</label>
+          <input class="input" type="email" id="lupaEmail" name="email" placeholder="nama@gmail.com">
+          <p class="field__error" role="alert"></p>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn--ghost" type="button" data-close>Batal</button>
+          <button class="btn btn--primary" type="submit">Kirim tautan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Daftar -->
+  <div class="modal" id="modalDaftar" hidden>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="judulDaftar">
+      <button class="modal__close" type="button" data-close aria-label="Tutup">&times;</button>
+      <h2 id="judulDaftar">Buat akun baru</h2>
+      <form id="formDaftar" novalidate>
+        <div class="field">
+          <label for="daftarNama">Nama lengkap</label>
+          <input class="input" type="text" id="daftarNama" name="nama" autocomplete="name">
+          <p class="field__error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="daftarEmail">Email</label>
+          <input class="input" type="email" id="daftarEmail" name="email" autocomplete="email">
+          <p class="field__error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="daftarPassword">Password <span class="hint">(minimal 6 karakter)</span></label>
+          <input class="input" type="password" id="daftarPassword" name="password" autocomplete="new-password">
+          <p class="field__error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="daftarKonfirmasi">Ulangi password</label>
+          <input class="input" type="password" id="daftarKonfirmasi" name="konfirmasi" autocomplete="new-password">
+          <p class="field__error" role="alert"></p>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn--ghost" type="button" data-close>Batal</button>
+          <button class="btn btn--primary" type="submit">Daftar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
