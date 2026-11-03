@@ -26,8 +26,7 @@ tugas-uts-web1/
 ├── js/
 │   ├── data.js         # data pengguna, katalog buku, dan tracking
 │   └── script.js       # logika semua halaman
-├── img/                # sampul buku
-└── screenshots/        # tangkapan layar untuk README
+└── img/                # sampul buku
 ```
 
 ## Teknologi yang Digunakan 
